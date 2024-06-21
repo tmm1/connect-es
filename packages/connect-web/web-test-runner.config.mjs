@@ -26,6 +26,9 @@ const sharedCapabilities = {
   // environment variable. this is useful for identifying test runs
   // this is for example the name for github actions
   build: `build ${process.env.GITHUB_RUN_NUMBER || "unknown"}`,
+  appiumVersion: 1.21.0,
+  video: false,
+  interactiveDebugging: false,
 };
 
 export default {
@@ -47,26 +50,26 @@ export default {
   browsers: [
     // create a browser launcher per browser you want to test
     // you can get the browser capabilities from the browserstack website
-    browserstackLauncher({
-      capabilities: {
-        ...sharedCapabilities,
-        browserName: "Safari",
-        device: "iPhone 11",
-        os: "ios",
-        os_version: "13",
-      },
-    }),
+    // browserstackLauncher({
+    //   capabilities: {
+    //     ...sharedCapabilities,
+    //     browserName: "Safari",
+    //     device: "iPhone 11",
+    //     os: "ios",
+    //     osVersion: "13",
+    //   },
+    // }),
 
-    browserstackLauncher({
-      capabilities: {
-        ...sharedCapabilities,
-        browserName: "Safari",
-        browser_version: "11.1",
-        os: "OS X",
-        os_version: "High Sierra",
-        resolution: "1024x768",
-      },
-    }),
+    // browserstackLauncher({
+    //   capabilities: {
+    //     ...sharedCapabilities,
+    //     browserName: "Safari",
+    //     browser_version: "11.1",
+    //     os: "OS X",
+    //     os_version: "High Sierra",
+    //     resolution: "1024x768",
+    //   },
+    // }),
 
     browserstackLauncher({
       capabilities: {
@@ -77,19 +80,20 @@ export default {
         os: "Windows",
         os_version: "10",
         resolution: "1024x768",
+        buildName: "Stevetest"
       },
     }),
 
-    browserstackLauncher({
-      capabilities: {
-        ...sharedCapabilities,
-        browserName: "Firefox",
-        browser: "firefox",
-        browser_version: "67.0",
-        os: "Windows",
-        os_version: "10",
-        resolution: "1024x768",
-      },
-    }),
+    // browserstackLauncher({
+    //   capabilities: {
+    //     ...sharedCapabilities,
+    //     browserName: "Firefox",
+    //     browser: "firefox",
+    //     browser_version: "67.0",
+    //     os: "Windows",
+    //     os_version: "10",
+    //     resolution: "1024x768",
+    //   },
+    // }),
   ],
 };
