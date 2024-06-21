@@ -14,8 +14,6 @@
 
 import { proto3, ScalarType } from "@bufbuild/protobuf";
 
-console.log("loaded the bigint test");
-
 describe("bigint", () => {
   it("survives binary roundtrip", () => {
     const M = proto3.makeMessageType("M", [

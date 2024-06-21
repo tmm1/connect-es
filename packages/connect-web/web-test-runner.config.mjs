@@ -14,8 +14,6 @@ if (
 
 // options shared between all browsers
 const sharedCapabilities = {
-  // your username and key for browserstack, you can get this from your browserstack account
-  // it's recommended to store these as environment variables
   "browserstack.user": process.env.BROWSERSTACK_USERNAME,
   "browserstack.key": process.env.BROWSERSTACK_ACCESS_KEY,
 
@@ -23,11 +21,9 @@ const sharedCapabilities = {
 
   project: "connect-web",
   name: "browserstack-tests",
-  // if you are running tests in a CI, the build id might be available as an
-  // environment variable. this is useful for identifying test runs
-  // this is for example the name for github actions
+
   build: `build ${process.env.GITHUB_RUN_NUMBER || "unknown"}`,
-  video: true,
+  video: false,
   interactiveDebugging: true,
 };
 
@@ -44,31 +40,29 @@ export default {
     }),
     legacyPlugin(),
   ],
-  concurrentBrowsers: 1,
+  concurrentBrowsers: 3,
   concurrency: 3,
   browsers: [
-    // create a browser launcher per browser you want to test
-    // you can get the browser capabilities from the browserstack website
-    // browserstackLauncher({
-    //   capabilities: {
-    //     ...sharedCapabilities,
-    //     browserName: "Safari",
-    //     device: "iPhone 11",
-    //     os: "ios",
-    //     osVersion: "13",
-    //   },
-    // }),
+    browserstackLauncher({
+      capabilities: {
+        ...sharedCapabilities,
+        browserName: "Safari",
+        device: "iPhone 11",
+        os: "ios",
+        osVersion: "13",
+      },
+    }),
 
-    // browserstackLauncher({
-    //   capabilities: {
-    //     ...sharedCapabilities,
-    //     browserName: "Safari",
-    //     browser_version: "11.1",
-    //     os: "OS X",
-    //     os_version: "High Sierra",
-    //     resolution: "1024x768",
-    //   },
-    // }),
+    browserstackLauncher({
+      capabilities: {
+        ...sharedCapabilities,
+        browserName: "Safari",
+        browser_version: "11.1",
+        os: "OS X",
+        os_version: "High Sierra",
+        resolution: "1024x768",
+      },
+    }),
 
     browserstackLauncher({
       capabilities: {
@@ -82,16 +76,16 @@ export default {
       },
     }),
 
-    // browserstackLauncher({
-    //   capabilities: {
-    //     ...sharedCapabilities,
-    //     browserName: "Firefox",
-    //     browser: "firefox",
-    //     browser_version: "67.0",
-    //     os: "Windows",
-    //     os_version: "10",
-    //     resolution: "1024x768",
-    //   },
-    // }),
+    browserstackLauncher({
+      capabilities: {
+        ...sharedCapabilities,
+        browserName: "Firefox",
+        browser: "firefox",
+        browser_version: "67.0",
+        os: "Windows",
+        os_version: "10",
+        resolution: "1024x768",
+      },
+    }),
   ],
 };
