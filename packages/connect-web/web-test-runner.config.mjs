@@ -26,7 +26,6 @@ const sharedCapabilities = {
   // environment variable. this is useful for identifying test runs
   // this is for example the name for github actions
   build: `build ${process.env.GITHUB_RUN_NUMBER || "unknown"}`,
-  appiumVersion: 1.21.0,
   video: false,
   interactiveDebugging: false,
 };
@@ -80,7 +79,7 @@ export default {
         os: "Windows",
         os_version: "10",
         resolution: "1024x768",
-        buildName: "Stevetest"
+        buildName: "Stevetest",
       },
     }),
 
