@@ -40,8 +40,8 @@ export default {
     }),
     legacyPlugin(),
   ],
-  concurrentBrowsers: 3,
-  concurrency: 3,
+  concurrentBrowsers: 1,
+  concurrency: 1,
   browsers: [
     browserstackLauncher({
       capabilities: {
