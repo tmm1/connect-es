@@ -1,4 +1,5 @@
 import { esbuildPlugin } from "@web/dev-server-esbuild";
+import { legacyPlugin } from "@web/dev-server-legacy";
 import { jasmineTestRunnerConfig } from "web-test-runner-jasmine";
 import { browserstackLauncher } from "@web/test-runner-browserstack";
 
@@ -26,8 +27,8 @@ const sharedCapabilities = {
   // environment variable. this is useful for identifying test runs
   // this is for example the name for github actions
   build: `build ${process.env.GITHUB_RUN_NUMBER || "unknown"}`,
-  video: false,
-  interactiveDebugging: false,
+  video: true,
+  interactiveDebugging: true,
 };
 
 export default {
@@ -41,6 +42,7 @@ export default {
       target: "auto",
       tsconfig: "./tsconfig.json",
     }),
+    legacyPlugin(),
   ],
   concurrentBrowsers: 1,
   concurrency: 3,
@@ -77,7 +79,6 @@ export default {
         os: "Windows",
         os_version: "10",
         resolution: "1024x768",
-        buildName: "Stevetest",
       },
     }),
 
