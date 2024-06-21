@@ -2,12 +2,21 @@ import { esbuildPlugin } from "@web/dev-server-esbuild";
 import { jasmineTestRunnerConfig } from "web-test-runner-jasmine";
 import { browserstackLauncher } from "@web/test-runner-browserstack";
 
+if (
+  process.env.BROWSERSTACK_USERNAME === undefined ||
+  process.env.BROWSERSTACK_ACCESS_KEY === undefined
+) {
+  throw new Error(
+    "The environment variables BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY are required to run tests on browserstack.",
+  );
+}
+
 // options shared between all browsers
 const sharedCapabilities = {
   // your username and key for browserstack, you can get this from your browserstack account
   // it's recommended to store these as environment variables
-  "browserstack.user": process.env.BROWSER_STACK_USERNAME,
-  "browserstack.key": process.env.BROWSER_STACK_ACCESS_KEY,
+  "browserstack.user": process.env.BROWSERSTACK_USERNAME,
+  "browserstack.key": process.env.BROWSERSTACK_ACCESS_KEY,
 
   concurrentBrowsers: 2,
 
