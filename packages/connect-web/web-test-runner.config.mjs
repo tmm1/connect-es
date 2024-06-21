@@ -31,6 +31,7 @@ const sharedCapabilities = {
 export default {
   ...jasmineTestRunnerConfig(),
   files: ["./browserstack/*.ts"],
+  testsStartTimeout: 40000,
   nodeResolve: true,
   plugins: [
     esbuildPlugin({
