@@ -51,7 +51,6 @@ export default {
       capabilities: {
         ...sharedCapabilities,
         browserName: "Safari",
-        browser: "benny",
         device: "iPhone 11",
         os: "ios",
         os_version: "13",
@@ -62,7 +61,6 @@ export default {
       capabilities: {
         ...sharedCapabilities,
         browserName: "Safari",
-        browser: "safdie",
         browser_version: "11.1",
         os: "OS X",
         os_version: "High Sierra",
