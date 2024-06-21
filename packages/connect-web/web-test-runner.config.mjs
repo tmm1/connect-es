@@ -40,7 +40,7 @@ export default {
       tsconfig: "./tsconfig.json",
     }),
   ],
-  concurrentBrowsers: 2,
+  concurrentBrowsers: 1,
   // amount of test files to execute concurrently in a browser. the default value is based
   //   // on amount of available CPUs locally which is irrelevant when testing remotely
   concurrency: 6,
@@ -51,6 +51,7 @@ export default {
       capabilities: {
         ...sharedCapabilities,
         browserName: "Safari",
+        browser: "benny",
         device: "iPhone 11",
         os: "ios",
         os_version: "13",
@@ -61,9 +62,34 @@ export default {
       capabilities: {
         ...sharedCapabilities,
         browserName: "Safari",
+        browser: "safdie",
         browser_version: "11.1",
         os: "OS X",
         os_version: "High Sierra",
+        resolution: "1024x768",
+      },
+    }),
+
+    browserstackLauncher({
+      capabilities: {
+        ...sharedCapabilities,
+        browserName: "Chrome",
+        browser: "chrome",
+        browser_version: "60.0",
+        os: "Windows",
+        os_version: "10",
+        resolution: "1024x768",
+      },
+    }),
+
+    browserstackLauncher({
+      capabilities: {
+        ...sharedCapabilities,
+        browserName: "Firefox",
+        browser: "firefox",
+        browser_version: "67.0",
+        os: "Windows",
+        os_version: "10",
         resolution: "1024x768",
       },
     }),
