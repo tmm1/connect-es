@@ -50,9 +50,10 @@ export default {
     browserstackLauncher({
       capabilities: {
         ...sharedCapabilities,
-        browserName: "Chrome",
-        os: "Windows",
-        os_version: "10",
+        browserName: "Safari",
+        device: "iPhone 11",
+        os: "ios",
+        os_version: "13",
       },
     }),
 
@@ -63,16 +64,7 @@ export default {
         browser_version: "11.1",
         os: "OS X",
         os_version: "High Sierra",
-      },
-    }),
-
-    browserstackLauncher({
-      capabilities: {
-        ...sharedCapabilities,
-        browserName: "IE",
-        browser_version: "11.0",
-        os: "Windows",
-        os_version: "7",
+        resolution: "1024x768",
       },
     }),
   ],
