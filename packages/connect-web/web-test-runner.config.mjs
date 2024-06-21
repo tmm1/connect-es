@@ -48,19 +48,7 @@ export default {
     // you can get the browser capabilities from the browserstack website
     browserstackLauncher({
       capabilities: {
-        // your username and key for browserstack, you can get this from your browserstack account
-        // it's recommended to store these as environment variables
-        "browserstack.user": process.env.BROWSER_STACK_USERNAME,
-        "browserstack.key": process.env.BROWSER_STACK_ACCESS_KEY,
-
-        concurrentBrowsers: 2,
-
-        project: "connect-web",
-        name: "browserstack-tests",
-        // if you are running tests in a CI, the build id might be available as an
-        // environment variable. this is useful for identifying test runs
-        // this is for example the name for github actions
-        build: `build ${process.env.GITHUB_RUN_NUMBER || "unknown"}`,
+        ...sharedCapabilities,
         browserName: "Chrome",
         os: "Windows",
         os_version: "10",
