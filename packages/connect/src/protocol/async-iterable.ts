@@ -1042,7 +1042,6 @@ export function transformSplitEnvelope(
   }
 
   return async function* (iterable): AsyncIterable<EnvelopedMessage> {
-    const { Uint8ArrayList } = await import("uint8arraylist");
     const buffer = new Uint8ArrayList();
     for await (const chunk of iterable) {
       buffer.append(chunk);
