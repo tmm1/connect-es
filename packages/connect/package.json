@@ -84,6 +84,9 @@
       ]
     }
   },
+  "dependencies": {
+    "uint8arraylist": "^2.4.8"
+  },
   "peerDependencies": {
     "@bufbuild/protobuf": "^1.4.2"
   },
