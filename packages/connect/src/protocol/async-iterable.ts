@@ -1030,7 +1030,7 @@ export function transformSplitEnvelope(
     if (bufferList.byteLength < 5) {
       return undefined;
     }
-    const buffer = bufferList.subarray();
+    const buffer = bufferList.subarray(0, 5);
     const view = new DataView(
       buffer.buffer,
       buffer.byteOffset,
