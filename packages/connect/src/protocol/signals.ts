@@ -34,11 +34,11 @@ export function createLinkedAbortController(
   const sa = signals.filter((s) => s !== undefined).concat(controller.signal);
 
   for (const signal of sa) {
-    if (signal.aborted) {
+    if (signal?.aborted) {
       onAbort.apply(signal);
       break;
     }
-    signal.addEventListener("abort", onAbort);
+    signal?.addEventListener("abort", onAbort);
   }
 
   function onAbort(this: AbortSignal) {
@@ -46,7 +46,7 @@ export function createLinkedAbortController(
       controller.abort(getAbortSignalReason(this));
     }
     for (const signal of sa) {
-      signal.removeEventListener("abort", onAbort);
+      signal?.removeEventListener("abort", onAbort);
     }
   }
 
