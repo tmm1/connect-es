@@ -1089,7 +1089,7 @@ export async function readAllBytes(
     if (hint > readMaxBytes) {
       assertReadMaxBytes(readMaxBytes, hint, true);
     }
-    const buffer = new Uint8Array(hint);
+    const buffer = new GrowableArrayBuffer(hint);
     let offset = 0;
     for await (const chunk of iterable) {
       if (offset + chunk.byteLength > hint) {
@@ -1100,7 +1100,7 @@ export async function readAllBytes(
           Code.InvalidArgument,
         );
       }
-      buffer.set(chunk, offset);
+      buffer.append(chunk);
       offset += chunk.byteLength;
     }
     if (offset < hint) {
@@ -1109,22 +1109,16 @@ export async function readAllBytes(
         Code.InvalidArgument,
       );
     }
-    return buffer;
+    return buffer.consume(offset)
   }
-  const chunks: Uint8Array[] = [];
+  const buffer = new GrowableArrayBuffer();
   let count = 0;
   for await (const chunk of iterable) {
     count += chunk.byteLength;
     assertReadMaxBytes(readMaxBytes, count);
-    chunks.push(chunk);
+    buffer.append(chunk);
   }
-  const all = new Uint8Array(count);
-  let offset = 0;
-  for (let chunk = chunks.shift(); chunk; chunk = chunks.shift()) {
-    all.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return all;
+  return buffer.consume(count);
 }
 
 // parse the lengthHint argument of readAllBytes()
